@@ -1,142 +1,136 @@
-% LaTeX file for resume 
+\documentclass{article}
+\usepackage{fixltx2e}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\textheight=10in
+\pagestyle{empty}
+%\raggedbottom
+\raggedright
 
-% This file uses the resume document class (res.cls)
+%  \renewcommand{\encodingdefault}{cg}
+  %\renewcommand{\rmdefault}{lgrcmr}
 
+\def\bull{\vrule height 0.8ex width 0.7ex depth -.1ex }
+% DEFINITIONS FOR RESUME
+\newcommand{\area}[2]{\vspace*{-9pt} \begin{verse}\textbf{#1}   #2 \end{verse}  }
+\newcommand{\lineunder}{\vspace*{-8pt} \\ \hspace*{-18pt} \hrulefill \\}
+\newcommand{\header}[1]{{\hspace*{-15pt}\vspace*{6pt} \textsc{#1}} \vspace*{-6pt} \lineunder}
+\newcommand{\employer}[4]{{ \textbf{#1} -- #2 (#3)\\ \underline{\textbf{\emph{#4}}}\\  }}
+\newcommand{\contact}[3]{
+  \vspace*{-24pt}
+\begin{center}
+{\LARGE \scshape {#1}}\\
+#2 \lineunder 
+#3
+\end{center}
+\vspace*{-8pt}
+}
+\newenvironment{achievements}{\begin{list}{$\bullet$}{\topsep 0pt \itemsep -2pt}}{\vspace*{4pt}\end{list}}
+\newcommand{\schoolwithcourses}[4]{
+ \textbf{#1} #2 $\bullet$ #3\\ 
+#4 $\bullet$  Selected Coursework:\\
+\vspace*{5pt}
+}
+\newcommand{\school}[4]{
+ \textbf{#1} #2 $\bullet$ #3\\ 
+#4 \\
+}
+\newcommand{\reference}[4]{
+ \textbf{#1}  #2\\
+ \hspace{20pt}  #3\\ 
+ \hspace{20pt} #4\newline
+}
+% END RESUME DEFINITIONS
+\usepackage[pdftex]{hyperref}
+\hypersetup{colorlinks,%
+            citecolor=black,%
+            filecolor=black,%
+            linkcolor=black,%
+            urlcolor=black,%
+            pdftex}
+\begin{document}
 
+\small
+\smallskip
+\vspace*{-22pt}
 
-\documentclass{res}
+\contact{Keith P. Wyss}
+{1278 W 9th Street, Apt 803, Cleveland, OH 44113}
+{(412) 760-4997 $\bullet$ WyssMan@gmail.com }
 
-%\usepackage{helvetica} % uses helvetica postscript font (download
-%helvetica.sty)
+\header{Education}
+ \textbf{The University of Pittsburgh} Pittsburgh, PA, U.S.A. \newline%
+ $\bullet$ Bachelor of Engineering: Computer Engineering, 2012\\ 
+ \hspace{15pt}-- Honors: Summa Cum Laude \newline%
+ $\bullet$ Bachelor of Science: Mathematics, 2012\\ 
+ \hspace{15pt}-- Honors: Summa Cum Laude \newline%
+ \vspace{7pt}
+ $\bullet$  Selected Coursework:
+\vspace{2pt}
+\area{Computer Science}{$\cdot$ Databases $\cdot$ Data Structures %
+$\cdot$ Algorithms $\cdot$ Networking $\cdot$ Operating Systems %
+ $\cdot$ Artificial Intelligence $\cdot$ Systems Programming %
+$\cdot$ Theory of Computation %
+$\cdot$ Software Engineering $\cdot$}
+\area{Mathematics}{$\cdot$ Calculus $\cdot$ Linear Algebra %
+$\cdot$ Discrete Math $\cdot$ Probability and Statistics $\cdot$ Differential Equations %
+$\cdot$ Numerical Methods $\cdot$ }
+\area{Computer Engineering}{%
+$\cdot$ Computer Architecture %
+$\cdot$ Advanced Digital Design %
+$\cdot$ Linear Circuits %
+$\cdot$ Signals and Systems %
+$\cdot$ Microelectronics %
+}
 
-\usepackage{newcent}   % uses new century schoolbook postscript font 
-\usepackage{multicol}
-\setlength{\textheight}{9.5in} % increase text height to fit on 1-page 
+\header{Employment Experience}
+\employer{Explorys Medical}{High Performance Indexing Team} {2012 -- Present} %
+{Hadoop Software Engineer}
+\begin{achievements}
+  \item Worked on the indexing layer of the Explorys codebase, mapping disparate hospital datasets to a unified medical ontology that was published to the applications higher on the stack.
+  \item Delivered batch jobs to periodically generate and load store files for a random access health system engine powered by Apache HBase.
+  \item Developed and maintained a web service that computed and served the results of set intersection over a large population indexed by feature similarity. 
+      \item Wrote a custom MapReduce connector for Apache HBase that outperformed the typical TableInputFormat in some circumstances by a factor of three.
+        \item Worked on a trending API to collect production statistics about data completeness and resource consumption and prepare them for graphical consumption.
+          \item Participated in a team that designed a new architecture for the Explorys backend, starting with data ingestion and moving through until a published view.
+            \item Built operational infrastructure within a unix environment for batch scheduling, event email alerts, and data aggregation.
+            \end{achievements}
 
+\employer{Pittsburgh Art House}{Website Creation}{Summer 2011}{Webmaster}
+   \begin{achievements}
+     \item Designed, programmed, and deployed website for non-profit organization the Pittsburgh Art House. \emph{\href{http://pgharthouse.heroku.com}{Hosted on heroku.}}
+       \item Constructed SQL model to serve pictures to the website for Artist profiles and Gallery.
+         \item Created the frontend code for the routing and the presentation of the site.
+           \item Implemented system of roles emulating unix permissions overtop the routing layer to allow administration of the website without coding knowledge.
+             \end{achievements}
 
-
-\begin{document} 
-
-
-
-\name{KEITH P. WYSS\\[12pt]}     % the \\[12pt] adds a blank
-
-        % line after name      
-
-
-
-\address{\bf  PRESENT ADDRESS\\1278 West 9th
-  Street\\Apt. 803\\Cleveland, OH 44113\\(412)
-  760-4997 \\ WyssMan@gmail.com} 
-
-\address{\bf PERMANENT ADDRESS \\ 4011 Mayflower Court \\
-  Murrysville, PA 15668 }
-
-                                  
-
-\begin{resume}
-
-
-
-\section{OBJECTIVE}          
-\vspace{-0.15in}
-%\begin{paragraph}
-
-  \begin{tabbing}
-
-   \hspace{2.3in}\= \hspace{2.6in}\= \kill % set up two tab positions
-
-
-I am interested in the challenges that web scale presents to traditional
-software systems.\\
-I would like to develop high performance back-end systems for web
-applications.
-
-%\end{paragraph}
-   \end{tabbing}
-                
- 
-
-\section{EDUCATION}          
-\vspace{0.15in}
-{\bf University of Pittsburgh}         \\
-
-
-\begin{itemize}
-\item Bachelor of Science, Computer Engineering, December 2011\\
-    {\small Summa Cum Laude}       
-
-
-\item Bachelor of Science, Mathematics, December 2011\\
-{\small Summa Cum Laude}
-\end{itemize}
-
-
- 
-
-\section{EXPERIENCE}
-
-\vspace{-0.1in}
-
-   \begin{tabbing}
-
-   \hspace{2.3in}\= \hspace{2.6in}\= \kill % set up two tab positions
-
-    {\bf Hadoop Engineer} \>Explorys Inc.     \>Winter
-    2012-Present\\
-
-                             \>Cleveland, OH
-
-   \end{tabbing}\vspace{-20pt}      % suppress blank line after
-                                % tabbing
-
-    Build and maintain an extensive distributed data-store of Electronic Health
-    Records (EHR). 
-\\\\
-Build and maintain the infrastructure to serve analysis of this data
-to customers in a HIPAA compliant fashion.
-\\\\
-    Work with Apache Hadoop and Apache HBase to construct data-flow
-    that handles scalability issues.
-
-   \begin{tabbing}
-
-   \hspace{2.3in}\= \hspace{2.6in}\= \kill % set up two tab positions
-
-    {\bf  Webmaster } \>Pittsburgh Art House\> ~~~~~~
-    Summer 2011\\
-
-                          \>Pittsburgh, PA
-
-   \end{tabbing}\vspace{-20pt}
-
-Writing and maintaining web site and web databases for a Pittsburgh
-Art Collective using Ruby on Rails.    
-
-\section{COMPUTER LANGUAGES AND FRAMEWORKS}          
-\begin{multicols}{2}
-  \begin{itemize}
-        \item Hadoop
-        \item HBase
-        \item Java
-        \item HTML/CSS/Javascript
-        \item Ruby/Rails
-        \item Unix/Bash
-        \item SQL
-        \item Clojure
-        \item C
-        \item VHDL/FPGA design
-        \item MIPS Assembly Language
-   \end{itemize}
-\end{multicols}
-
- 
-\section{REFEREED PUBLICATIONS}
- 
-A Transfer Theory Analysis of Approximate Deconvolution Models of
-Turbulence \\
-co-authored with Dr. W Layton (PITT) and Dr. M Neda (UNLV)
-
-\end{resume}
-
+\employer{Brackenridge Fellowship}{Fluid Dynamics}{Summer 2010}{Researcher}
+\begin{achievements}
+  \item Investigated a relationship between time energy dissipation and a simplified ``Pao'' model of fluid turbulence.
+    \item Constructed models that used adaptive Runge-Kutta 4/5 and other techniques of Numerical Analysis to solve the equations that arose from a Fourier series representation of the Navier Stokes equations under our initial conditions.
+      \item Proved the stability of the models in question, performed complexity analysis of the algorithm, and co-authored the paper listed below.
+        \item Performed analysis of the equations, searching for a coupling that could introduce intermittency into the energy flow, while preserving the time averaged logarithmic slope.
+\end{achievements}%
+\newpage
+\header{Refereed Publications}
+\begin{achievements}
+\item \emph{\textbf{\href{http://www.math.ualberta.ca/ijnamb/Volume-2-2011/No-1-11/2011-01-04.pdf}{A Transfer Theory Analysis of Approximate Deconvolution Models of Turbulence}
+}}\\
+  co-authored with Dr. W. Layton (PITT) and Dr. M Neda (UNLV)\\
+  \footnotesize{International Journal of Numerical Analysis and Modeling, Series B}\\
+  \footnotesize{Volume 2, Number 1, Pages 57-72}
+\end{achievements}
+\header{Technical Certifications}
+\begin{achievements}
+\item \textbf{Cloudera Certified Developer for Apache Hadoop} \\
+\item \textbf{Cloudera Certified Specialist in Apache HBase} \\
+\end{achievements}
+\header{Skills}
+\begin{achievements}
+\item Proficient at software development in Java, C, Ruby, Clojure, Matlab, MIPS Assembly.
+\item Competence with Hadoop, HBase, Zookeeper, Vertica, SQL, VHDL, HTML/CSS, \LaTeX
+\item Experience within a Unix environment, possesses strong shell scripting skills and a familiarily with system monitoring tools.
+\end{achievements}
 \end{document}
+
